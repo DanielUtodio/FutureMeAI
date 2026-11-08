@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureMe AI Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-white">
+
+    <div class="w-full h-screen flex overflow-hidden">
+
+        <!-- Sidebar -->
+        <aside class="hidden md:flex w-64 h-full flex-col items-center border-r-2 border-gray-200 p-4 shrink-0">
+
+            <h1 class="text-2xl font-bold text-[#6366F1] flex items-center gap-2 mb-6">
+                <i data-lucide="sparkles" class="w-8 h-8 text-[#6366F1]"></i>
+                FutureMe AI
+            </h1>
+
+            <button id="newChatButton"
+                class="w-full max-w-[180px] flex items-center justify-center gap-2 bg-[#4F46E5] text-white p-3 rounded-lg hover:bg-indigo-700 transition">
+                <i data-lucide="plus" class="w-5 h-5"></i>
+                New Chat
+            </button>
+
+            <nav class="flex flex-col items-center gap-6 w-full mt-10">
+
+                <a href="#" class="min-w-[160px] flex items-center justify-start p-2 gap-2 text-[#4F46E5] font-medium">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                    Dashboard
+                </a>
+
+                <a href="#"
+                    class="min-w-[160px] flex items-center justify-start p-2 gap-2 text-gray-600 hover:text-[#4F46E5]">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                    Explore
+                </a>
+
+                <a href="#"
+                    class="min-w-[160px] flex items-center justify-start p-2 gap-2 text-gray-600 hover:text-[#4F46E5]">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                    Profile
+                </a>
+
+                <a href="#"
+                    class="min-w-[160px] flex items-center justify-start p-2 gap-2 text-gray-600 hover:text-[#4F46E5]">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                    Settings
+                </a>
+
+            </nav>
+        </aside>
+
+
+        <!-- Main Section -->
+        <section class="flex-1 h-full flex flex-col min-w-0">
+
+            <!-- Header -->
+            <header class="w-full h-16 flex items-center justify-between px-4 border-b border-gray-200 shrink-0">
+
+                <h1 class="text-xl font-bold text-[#6366F1]">
+                    FutureMe AI
+                </h1>
+
+                <div class="flex items-center gap-4">
+                    <p class="hidden sm:block text-[#4F46E5] font-medium">
+                        Hello Daniel!
+                    </p>
+
+                    <i data-lucide="bell" class="w-6 h-6 text-[#4F46E5]"></i>
+                </div>
+
+            </header>
+
+
+            <!-- Chat Messages -->
+            <main id="chatMessages" class="flex-1 p-4 md:p-6 overflow-y-auto">
+
+                <div class="max-w-4xl mx-auto flex flex-col gap-6">
+
+                    <!-- Welcome Message -->
+                    <div class="flex items-start gap-4">
+
+                        <div class="shrink-0 border-2 border-[#4F46E5] p-2 rounded-full">
+                            <i data-lucide="message-circle" class="w-5 h-5 text-[#4F46E5]"></i>
+                        </div>
+
+                        <div class="text-gray-700 bg-[#EEF2FF] p-4 rounded-lg max-w-3xl">
+                            <p>
+                                Welcome to FutureMe AI! Explore your interests and discover new opportunities.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+
+            <!-- Message Input -->
+            <footer class="border-t border-gray-200 p-4 md:p-6 shrink-0">
+
+                <div class="max-w-4xl mx-auto">
+
+                    <form id="chatForm" class="flex items-end gap-3">
+
+                        <textarea id="messageInput" rows="1" placeholder="Ask FutureMe AI anything..."
+                            class="flex-1 resize-none border border-gray-300 rounded-xl p-4 outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+
+                        <button id="sendButton" type="submit"
+                            class="bg-[#4F46E5] hover:bg-indigo-700 text-white p-4 rounded-xl transition disabled:opacity-50">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                        </button>
+
+                    </form>
+
+                    <p class="text-xs text-gray-400 text-center mt-3">
+                        FutureMe AI can make mistakes. Verify important information.
+                    </p>
+
+                </div>
+
+            </footer>
+
+        </section>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script>
+        const chatForm = document.getElementById("chatForm");
+        const messageInput = document.getElementById("messageInput");
+        const chatMessages = document.getElementById("chatMessages");
+        const sendButton = document.getElementById("sendButton");
+        const newChatButton = document.getElementById("newChatButton");
+        let chatId = null;
+
+        function displayMessage(message, sender) {
+            const row = document.createElement("div");
+            if (sender === "user") {
+                row.className = "flex justify-end";
+                row.innerHTML = `<div class="max-w-[85%] md:max-w-2xl bg-[#4F46E5] text-white p-4 rounded-lg whitespace-pre-wrap break-words"></div>`;
+                row.querySelector("div").textContent = message;
+            } else {
+                row.className = "flex items-start gap-4";
+                row.innerHTML = `<div class="shrink-0 border-2 border-[#4F46E5] p-2 rounded-full"><i data-lucide="message-circle" class="w-5 h-5 text-[#4F46E5]"></i></div><div class="prose prose-indigo max-w-3xl text-gray-700 bg-[#EEF2FF] p-4 rounded-lg break-words"></div>`;
+                row.querySelector("div:last-child").innerHTML = DOMPurify.sanitize(marked.parse(message));
+            }
+            chatMessages.firstElementChild.appendChild(row);
+            lucide.createIcons();
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showLoading() {
+            const loading = document.createElement("div");
+            loading.id = "loadingMessage";
+            loading.className = "flex items-start gap-4";
+            loading.innerHTML = `<div class="border-2 border-[#4F46E5] p-2 rounded-full shrink-0"><i data-lucide="message-circle" class="w-5 h-5 text-[#4F46E5]"></i></div><div class="bg-[#EEF2FF] text-gray-500 p-4 rounded-lg">FutureMe AI is thinking...</div>`;
+            chatMessages.firstElementChild.appendChild(loading);
+            lucide.createIcons();
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeLoading() {
+            document.getElementById("loadingMessage")?.remove();
+        }
+
+        chatForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            displayMessage(message, "user");
+            messageInput.value = "";
+            messageInput.style.height = "auto";
+            sendButton.disabled = messageInput.disabled = true;
+            showLoading();
+
+            try {
+                const res = await fetch("/api/future-chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message, chat_id: chatId })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || "Something went wrong.");
+                if (data.chat_id) chatId = data.chat_id;
+                displayMessage(data.reply, "ai");
+            } catch (error) {
+                console.error("Error:", error);
+                displayMessage("Sorry, something went wrong. Please try again.", "ai");
+            } finally {
+                removeLoading();
+                sendButton.disabled = messageInput.disabled = false;
+                messageInput.focus();
+            }
+        });
+
+        newChatButton.addEventListener("click", async () => {
+            newChatButton.disabled = true;
+            try {
+                const res = await fetch("/api/new-chat", { method: "POST" });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || "Could not start a new chat.");
+                chatId = data.chat_id || null;
+                chatMessages.firstElementChild.innerHTML = `<div class="flex items-start gap-4"><div class="shrink-0 border-2 border-[#4F46E5] p-2 rounded-full"><i data-lucide="message-circle" class="w-5 h-5 text-[#4F46E5]"></i></div><div class="text-gray-700 bg-[#EEF2FF] p-4 rounded-lg max-w-3xl"><p>Welcome to FutureMe AI! Explore your interests and discover new opportunities.</p></div></div>`;
+                lucide.createIcons();
+            } catch (error) {
+                console.error("New chat error:", error);
+                alert("Could not start a new chat. Please try again.");
+            } finally {
+                newChatButton.disabled = false;
+            }
+        });
+
+        messageInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                chatForm.requestSubmit();
+            }
+        });
+
+        messageInput.addEventListener("input", () => {
+            messageInput.style.height = "auto";
+            messageInput.style.height = messageInput.scrollHeight + "px";
+        });
+
+        lucide.createIcons();
+    </script>
+
+</body>
+
+</html>

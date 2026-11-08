@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureMe AI</title>
+    <!-- Google Font Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;500;600;700;800&display=swap" rel="stylesheet">    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="font-poppins">
+    <div class="w-full min-h-screen">
+        <header class="w-full h-20 flex justify-between items-center px-6">
+            <div class="flex items-center gap-4">
+                <i data-lucide="sparkles" class="w-12 h-12 text-[#4747D4]"></i>
+                <div><h1 class="text-[#1E1B4B] text-3xl font-semibold">FutureMe <span class="text-[#6366F1]">AI</span></h1>
+                <small class="flex items-center gap-2 capitalize text-[#818CF8] font-medium">explore <i class="w-1 h-1 bg-black rounded-full"></i> learn <i class="w-1 h-1 bg-black rounded-full"></i> build your future</small>
+                </div>
+            </div>
+
+            <nav class="flex gap-8 items-center capitalize text-[#] font-medium">
+                <a href="#">home</a>
+                <a href="#Explore">Explore</a>
+                <a href="#About">About</a>
+            </nav>
+            <a href="/dashboard" class="w-max py-2 px-3 rounded-3xl bg-blue-700 text-white capitalize">get started</a>
+        </header>
+        <main class="w-full min-h-max flex flex-col">
+            <section class="w-full h-[80vh] flex justify-between items-center bg-gradient-to-br from-[#EEF2FF] to-[#818df8a9] px-20">
+                <article class="w-1/2 h-full flex flex-col justify-center gap-4">
+                    <small class="capitalize w-max bg-[#E0E7FF] text-[#1E1B4B] py-1 px-3 rounded-full">your interests + AI = real opportunities</small>
+                    <h1 class="text-6xl text-slate-950 font-bold capitalize leading-tight">discover your <br><span
+                            class="text-indigo-500">future</span> with <span class="text-indigo-500">AI</span></h1>
+                    <div class="w-3/4">
+                        <p class="text-md text-slate-950">Tell us what you're interested in, and FutureME AI will suggest the best
+                            careers,
+                            skills to learn and beginner projects for you.</p>
+                    </div>
+                    <a href="/dashboard" class="w-max p-3 rounded-3xl text-white capitalize bg-blue-600 flex items-center gap-2">start exploring<i
+                            data-lucide="arrow-right" class="text-white"></i></a>
+                </article>
+
+
+                <div class="w-1/2 -l-2 h-full flex -translate-x-20 items-end">
+                    <img src="../static/futureme hero.png" alt="hero image" class="w-full object-cover">
+                </div>
+            </section>
+
+            <div id="About" class="w-full min-h-64 flex justify-between gap-6 p-6 bg-[#EEF2FF]">
+                <div class="w-1/4 flex flex-col text-center items-center justify-center">
+                    <div class="w-20 h-20 bg-[#818df8a9] rounded-full flex justify-center items-center">
+                        <i data-lucide="briefcase" class="w-10
+                         h-10 text-indigo-800"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mt-4">Find Career</h3>
+                    <p class="text-sm text-slate-600 mt-2">Discover career options that match your interests and strengths.</p>
+                </div>
+
+                <div class="w-1/3 flex flex-col text-center items-center justify-center  border-x border-[#64748B]">
+                    <div class="w-20 h-20 bg-[#818df8a9] rounded-full flex justify-center items-center">
+                        <i data-lucide="brain" class="w-10 h-10 text-indigo-800"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mt-4">Learn Key Skills</h3>
+                    <p class="text-sm text-slate-600 mt-2">Get a list of in-demand skills to build your future.</p>
+                </div>
+
+                <div class="w-1/4 flex flex-col text-center items-center justify-center">
+                    <div class="w-20 h-20 bg-[#818df8a9] rounded-full flex justify-center items-center">
+                        <i data-lucide="code-xml" class="w-10 h-10 text-indigo-800"></i>
+                    </div>
+                    <h3 class="text-lg text-[#1E1B4B] font-bold mt-4">Start Projects</h3>
+                    <p class="text-sm text-slate-600 mt-2">Explore beginner projects to build real experience.</p>
+                </div>
+                </div>
+            </div>
+
+            <section id="Explore" class="w-full min-h-32 flex flex-col gap-12 px-6 py-12">
+                <div class="px-12">
+                    <h1 class="text-[#1E1B4B] text-2xl font-semibold py-2">Explore Your Possibilities</h1>
+                    <p class="text-[#64748B]">Choose what interests you and let AI do the rest!</p>
+                </div>
+                    <div class="w-full px-12 min-h-32 flex justify-between gap-6 flex-wrap">
+                        <div class="w-32 h-28 flex flex-col gap-2 items-center text-center justify-center rounded-xl bg-[#9696FF]">
+                            <i data-lucide="laptop" class="w-10 h-10 text-[#000080]"></i>
+                            <p class="text-[#000080] font-medium">Technology</p>
+                        </div>
+                        
+                        <div class="w-32 h-28 flex flex-col gap-2 items-center text-center justify-center rounded-xl bg-[#BAE2C5]">
+                            <i data-lucide="heart-pulse" class="w-10 h-10 text-[#2E6F40]"></i>
+                            <p class="text-[#2E6F40] font-medium">Healthcare</p>
+                        </div>
+                        
+                        <div class="w-32 h-28 flex flex-col gap-2 items-center text-center justify-center rounded-xl bg-[#FDB4B5]">
+                            <i data-lucide="palette" class="w-10 h-10 text-[#FA5053]"></i>
+                            <p class="text-[#FA5053] font-medium">Creative Arts</p>
+                        </div>
+                        
+                        <div class="w-32 h-28 flex flex-col gap-2 items-center text-center justify-center rounded-xl bg-[#FFE599]">
+                            <i data-lucide="chart-no-axes-combined" class="w-10 h-10 text-[#FFBF00]"></i>
+                            <p class="text-[#FFBF00] font-medium">Business</p>
+                        </div>
+
+                        <div class="w-32 h-28 flex flex-col gap-2 items-center text-center justify-center rounded-xl bg-[#D1FAE5]">
+                            <i data-lucide="leaf" class="w-10 h-10 text-[#047857] font-bold"></i>
+                            <p class="text-[#047857] font-medium">Environment</p>
+                        </div>
+                    </div>
+                </section>
+        </main>
+        <footer class="w-full h-30 bg-[#04041D] flex justify-between items-center">
+            <div class="flex gap-4 items-center">
+                <img src="./images/Rocket.png" alt="Rocket" class="w-48 h-32">
+                <div class="h-full flex flex-col gap-2">
+                   <h2 class="text-white font-semibold capitalize">big dreams. real skills. a brighter future</h2>
+                    <p class="text-[#E2E8F0]">FutureMe AI is here to help you find the path that's right for you</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+  // Initialize Lucide icons
+  lucide.createIcons();
+</script>
+</body>
+</html>

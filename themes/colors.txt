@@ -1,0 +1,11 @@
+:root {
+  --future-primary: #4F46E5;
+  --future-action: #6366F1;
+  --future-accent: #818CF8;
+  --future-accent: #818df8a9;
+  --future-light: #E0E7FF;
+  --future-background: #EEF2FF;
+  --future-surface: #FFFFFF;
+  --future-heading: #1E1B4B;
+  --future-muted: #64748B;
+}
